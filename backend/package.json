@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "BrewTools backend",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matseke/brewtools.git"
+  },
+  "author": "Mats Ekelund",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matseke/brewtools/issues"
+  },
+  "homepage": "https://github.com/matseke/brewtools#readme",
+  "dependencies": {
+    "faker": "^5.5.3",
+    "fastify": "^3.15.1",
+    "fastify-autoload": "^3.7.1",
+    "fastify-plugin": "^3.0.0"
+  }
+}
