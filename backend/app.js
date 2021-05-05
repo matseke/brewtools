@@ -3,6 +3,10 @@ import {dirname, join} from "path";
 import {fileURLToPath} from "url";
 import AutoLoad from "fastify-autoload";
 import mongoose from "mongoose";
+import fastifySwagger from 'fastify-swagger';
+
+// Import Swagger Options
+import swaggerOptions from './config/swagger.js';
 
 // Connect to DB
 mongoose.connect('mongodb://localhost/brewtool')
@@ -18,6 +22,9 @@ fastify.register(AutoLoad, {
     dir: join(__dirname, "routes")
 });
 
+// Register Swagger
+fastify.register(fastifySwagger, swaggerOptions);
+
 fastify.register(import('./test/route.js'));
 
 // fastify.get("/", async function(request, reply) {
@@ -25,6 +32,7 @@ fastify.register(import('./test/route.js'));
 // });
 
 fastify.listen(3000, () => {
+    fastify.swagger();
     console.log("Running on port 3000");
 });
 
