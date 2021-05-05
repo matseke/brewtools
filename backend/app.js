@@ -2,6 +2,12 @@ import Fastify from "fastify";
 import {dirname, join} from "path";
 import {fileURLToPath} from "url";
 import AutoLoad from "fastify-autoload";
+import mongoose from "mongoose";
+
+// Connect to DB
+mongoose.connect('mongodb://localhost/brewtool')
+ .then(() => console.log('MongoDB connected…'))
+ .catch(err => console.log(err));
 
 const fastify = Fastify({logger: true});
 const __filename = fileURLToPath(import.meta.url);
