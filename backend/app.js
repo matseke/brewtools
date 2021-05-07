@@ -4,6 +4,7 @@ import {fileURLToPath} from "url";
 import AutoLoad from "fastify-autoload";
 import mongoose from "mongoose";
 import fastifySwagger from 'fastify-swagger';
+import fastifyCors from 'fastify-cors';
 
 // Import Swagger Options
 import swaggerOptions from './config/swagger.js';
@@ -22,6 +23,10 @@ fastify.register(AutoLoad, {
     dir: join(__dirname, "routes")
 });
 
+fastify.register(fastifyCors, { 
+    // put your options here
+  });
+
 // Register Swagger
 fastify.register(fastifySwagger, swaggerOptions);
 
@@ -31,9 +36,9 @@ fastify.register(import('./test/route.js'));
 //     return "Hello from fastify!";
 // });
 
-fastify.listen(3000, () => {
+fastify.listen(4000, () => {
     fastify.swagger();
-    console.log("Running on port 3000");
+    console.log("Running on port 4000");
 });
 
 }
