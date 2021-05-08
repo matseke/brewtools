@@ -1,5 +1,31 @@
 <template>
 <div>
+    <div v-if='!submitted'>
+        <div>
+            <label for='name'>Name</label>
+            <input
+                type='text'
+                id='name'
+                required
+                v-model='newHops.name'
+                name='name'
+            />
+        </div>
+        <div>
+            <label for='averageAa'>Average AA</label>
+            <input
+                id='averageAa'
+                required
+                v-model='newHops.averageAa'
+                name='averageAa'
+            />
+        </div>
+        <button @click='saveHops'> Submit </button>
+    </div>
+    <div v-else>
+        <h4>You submitted successfully!</h4>
+        <button @click='addHops'> Add </button>
+    </div>
 </div>
 </template>
 
@@ -8,6 +34,12 @@ import { ref } from 'vue'
 import { RepositoryFactory } from '../repositories/RepositoryFactory.js'
 
 const hops = ref([]);
+const submitted = ref(false);
+var newHops = {
+    id: null,
+    name: '',
+    averageAa: ''
+};
 
 const fetch = () => {
     RepositoryFactory.get('hopsRepository').get()
@@ -23,6 +55,28 @@ const fetch = () => {
 
 fetch();
 
+const saveHops = () => {
+    console.log('in saveHops');
+    var data = {
+        name: newHops.name,
+        averageAA: newHops.averageAa
+    }
+    RepositoryFactory.post('hopsRepository').post(data)
+    .then((response) => {
+        console.log(response);
+        newHops.id = response.data._id;
+        submitted.value = true;
+    })
+    .catch((err) => {
+        console.log("ERROR");
+        console.log(err);
+    });
+}
+
+const addHops = () => {
+    submitted.value = false;
+    newHops = {};
+}
 </script>
 
 <style scoped>

@@ -5,5 +5,6 @@ const repositories = {
 };
 
 export const RepositoryFactory = {
-  get: name => repositories[name]
+  get: name => repositories[name],
+  post: name => repositories[name]
 };
