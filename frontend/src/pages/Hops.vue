@@ -59,18 +59,24 @@ const saveHops = () => {
     console.log('in saveHops');
     var data = {
         name: newHops.name,
-        averageAA: newHops.averageAa
+        averageAA: parseFloat(newHops.averageAa)
     }
-    RepositoryFactory.post('hopsRepository').post(data)
-    .then((response) => {
-        console.log(response);
-        newHops.id = response.data._id;
-        submitted.value = true;
-    })
-    .catch((err) => {
-        console.log("ERROR");
-        console.log(err);
-    });
+    if (isNaN(data.averageAA)) {
+        // handle invalid input
+        console.log('not a float!')
+    } else {
+        RepositoryFactory.post('hopsRepository').post(data)
+            .then((response) => {
+                console.log(response);
+            newHops.id = response.data._id;
+            submitted.value = true;
+            })
+            .catch((err) => {
+                console.log("ERROR");
+                console.log(err);
+            });
+
+    }
 }
 
 const addHops = () => {
