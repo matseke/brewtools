@@ -29,12 +29,14 @@
     <div>
         <table>
             <tr>
-                <th>Name</th>
-                <th>Average AA</th>
+                <th id='name'>Name</th>
+                <th id='averageAa'>Average AA</th>
+                <th id='actions'>Actions</th>
             </tr>
             <tr v-for="{ _id, name, average_aa} in hops" :key="_id" >
                 <td>{{name}}</td>
                 <td>{{average_aa}}</td>
+                <td><button @click='deleteHops(_id)'>Delete</button></td>
             </tr>
         </table>
     </div>
@@ -81,7 +83,7 @@ const saveHops = () => {
     } else {
         RepositoryFactory.post('hopsRepository').post(data)
             .then((response) => {
-                console.log(response);
+                console.log(response.data);
             newHops.id = response.data._id;
             submitted.value = true;
             })
@@ -97,6 +99,19 @@ const addHops = () => {
     submitted.value = false;
     newHops = {};
 }
+
+const deleteHops = (id) => {
+    console.log(id);
+    RepositoryFactory.delete('hopsRepository').delete(id)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log("ERROR");
+                console.log(err);
+            });
+}
+
 </script>
 
 <style scoped>

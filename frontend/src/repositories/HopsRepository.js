@@ -7,7 +7,9 @@ export default {
     return Repository.get(`${hopsResource}`);
   },
   post(data) {
-    console.log('in post');
     return Repository.post(`${hopsResource}`, data);
+  },
+  delete(id) {
+    return Repository.delete(`${hopsResource}/${id}`);
   }
 };
