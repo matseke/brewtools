@@ -52,6 +52,7 @@ const updateHops = async (req, reply) => {
 const deleteHops = async (req, reply) => {
   try {
     const id = req.params.id
+    console.log('Deleting hops with id='+id)
     const hops = await Hops.findByIdAndRemove(id)
     return hops
   } catch (err) {
