@@ -26,6 +26,18 @@
         <h4>You submitted successfully!</h4>
         <button @click='addHops'> Add </button>
     </div>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Average AA</th>
+            </tr>
+            <tr v-for="{ _id, name, average_aa} in hops" :key="_id" >
+                <td>{{name}}</td>
+                <td>{{average_aa}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 </template>
 
@@ -46,6 +58,8 @@ const fetch = () => {
     .then((response) => {
         hops.value = response.data;
         console.log('recieved ' + response.data.length + ' hops from backend');
+        console.log(response.data);
+
     })
     .catch((err) => {
         console.log("ERROR");
@@ -59,9 +73,9 @@ const saveHops = () => {
     console.log('in saveHops');
     var data = {
         name: newHops.name,
-        averageAA: parseFloat(newHops.averageAa)
+        average_aa: parseFloat(newHops.averageAa)
     }
-    if (isNaN(data.averageAA)) {
+    if (isNaN(data.average_aa)) {
         // handle invalid input
         console.log('not a float!')
     } else {
