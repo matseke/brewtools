@@ -3,4 +3,6 @@ import { getHops, getSingleHops, addHops, updateHops, deleteHops } from '../../.
 export default async function(fastify, opts) {
     fastify.get('/', opts, getHops);
     fastify.post('/', opts, addHops);
+    fastify.put('/', opts, updateHops);
+    fastify.delete('/', opts, deleteHops);
 }
