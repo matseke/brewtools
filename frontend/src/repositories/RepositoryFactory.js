@@ -1,7 +1,9 @@
+import FermentablesRepository from "./FermentablesRepository.js";
 import HopsRepository from "./HopsRepository.js";
 
 const repositories = {
   hopsRepository: HopsRepository,
+  fermentablesRepository: FermentablesRepository,
 };
 
 export const RepositoryFactory = {
