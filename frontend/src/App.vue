@@ -1,6 +1,13 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <Hops />
+  <div>
+    <router-link to="/hops">Go to Hops</router-link>
+  </div>
+  <div>
+    <router-link to="/fermentables">Go to Fermentables</router-link>
+  </div>
+
+  <router-view></router-view>
 </template>
 
 <script setup>
