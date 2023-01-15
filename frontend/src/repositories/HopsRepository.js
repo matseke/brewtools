@@ -11,5 +11,8 @@ export default {
   },
   delete(id) {
     return Repository.delete(`${hopsResource}/${id}`);
-  }
+  },
+  put(id, data) {
+    return Repository.put(`${hopsResource}/${id}`, data);
+  },
 };

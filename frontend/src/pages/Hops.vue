@@ -34,6 +34,8 @@
                 <th id='actions'>Actions</th>
             </tr>
             <tr v-for="{ _id, name, average_aa} in hops" :key="_id" >
+                <router-link :to="`/hops/${_id}`"
+          >{{ name }} ({{ average_aa }})</router-link>
                 <td>{{name}}</td>
                 <td>{{average_aa}}</td>
                 <td><button @click='deleteHops(_id)'>Delete</button></td>
@@ -41,6 +43,7 @@
         </table>
     </div>
 </div>
+<router-view></router-view>
 </template>
 
 <script setup>
